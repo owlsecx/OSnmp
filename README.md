@@ -18,13 +18,20 @@
 
 ## 📌 Overview
 
-Ultra-fast parallel SNMP scanning, community
+
+OSnmp is an SNMP scanner and exploitation suite built for fast, parallel assessment of SNMP-enabled devices. It performs quick scans, community-string brute forcing, OID walks, system enumeration and single-OID gets, all with a threaded engine and stdlib-only implementation. It is intended for authorized purple-team and penetration-testing work.
 
 ---
 
 ## ✨ Features
 
-- SNMP scanner with community audit, OID walk across MIB trees, and BER decoder
+
+- Ultra-fast parallel SNMP scanning with a configurable thread pool
+- Community-string brute force from a built-in default or a supplied wordlist
+- OID walk, system enumeration and single-OID get modes
+- Multiple scan modes including a full scan (brute + sysinfo + walk)
+- Configurable port, timeout and output file, with export of last results
+- Pure stdlib (no external dependencies); --self-test for offline verification
 
 ---
 
@@ -37,8 +44,13 @@ Ultra-fast parallel SNMP scanning, community
 
 ## 🚀 Usage
 
+
 ```bash
-./OSnmp
+./OSnmp -t 192.168.1.10 -m quick
+./OSnmp -t 10.0.0.0/24 --communities wordlist.txt -m brute --threads 100
+./OSnmp --single-get 192.168.1.10 public 1.3.6.1.2.1.1.1.0
+./OSnmp --self-test
+./OSnmp --help
 ```
 
 ---
